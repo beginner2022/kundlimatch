@@ -21,18 +21,18 @@ alert("Enter both DOB");
 return;
 }
 
-// STEP 1: derive astrology data
-let brideRashi = getRashiFromDOB(brideDob.value);
-let groomRashi = getRashiFromDOB(groomDob.value);
+// REAL ASTRO CALCULATION
+let brideNakshatra = getRealNakshatra(brideDob.value);
+let groomNakshatra = getRealNakshatra(groomDob.value);
 
-let brideNakshatra = getNakshatraFromDOB(brideDob.value);
-let groomNakshatra = getNakshatraFromDOB(groomDob.value);
+let brideRashi = getRealRashi(brideDob.value);
+let groomRashi = getRealRashi(groomDob.value);
 
-// STEP 2: convert to indexes
+// INDEX
 let bIndex = nakshatraIndex[brideNakshatra];
 let gIndex = nakshatraIndex[groomNakshatra];
 
-// STEP 3: koota calculation
+// Koota calculation
 let koota = calculateKootas(bIndex, gIndex);
 let score = totalScore(koota);
 let status = getStatus(score);
@@ -42,15 +42,17 @@ scoreEl.innerHTML = score + " / 36";
 statusEl.innerHTML = status;
 
 reportEl.innerHTML = `
-<h3>Birth Based Kundli Analysis</h3>
-
-<p><b>Bride Rashi:</b> ${brideRashi}</p>
-<p><b>Groom Rashi:</b> ${groomRashi}</p>
+<h2>🌙 Real Kundli Analysis</h2>
 
 <p><b>Bride Nakshatra:</b> ${brideNakshatra}</p>
 <p><b>Groom Nakshatra:</b> ${groomNakshatra}</p>
 
-<h4>8 Koota Breakdown</h4>
+<p><b>Bride Rashi:</b> ${brideRashi}</p>
+<p><b>Groom Rashi:</b> ${groomRashi}</p>
+
+<hr/>
+
+<h3>8 Koota Breakdown</h3>
 
 <ul>
 <li>Varna: ${koota.varna}/1</li>
@@ -63,12 +65,12 @@ reportEl.innerHTML = `
 <li>Nadi: ${koota.nadi}/8</li>
 </ul>
 
-<p><b>Total Score:</b> ${score}/36</p>
-<p><b>Result:</b> ${status}</p>
+<h3>Total Score: ${score}/36</h3>
+<h3>Result: ${status}</h3>
 
 <p>
-Generated using DOB-based Kundli engine (MVP version).
-Next upgrade will include real planetary calculations using ephemeris data.
+This version uses Moon-position-based Nakshatra calculation.
+Next upgrade: Manglik Dosha + Planetary positions + Kundli chart wheel.
 </p>
 `;
 
