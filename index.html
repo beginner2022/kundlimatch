@@ -83,61 +83,124 @@ Generate Match Report
 
 <div class="container">
 
-<h2>Kundli Matching Form</h2>
+<h2>Gun Milan Calculator</h2>
 
 <div class="form-grid">
 
 <div>
 
-<h3>Bride Details</h3>
+<h3>Bride Nakshatra</h3>
 
-<input type="text" placeholder="Bride Name">
-<input type="date">
-<input type="time">
-<input type="text" placeholder="Birth Place">
+<select id="brideNakshatra">
+
+<option value="">Select Nakshatra</option>
+
+<option>Ashwini</option>
+<option>Bharani</option>
+<option>Krittika</option>
+<option>Rohini</option>
+<option>Mrigashira</option>
+<option>Ardra</option>
+<option>Punarvasu</option>
+<option>Pushya</option>
+<option>Ashlesha</option>
+<option>Magha</option>
+<option>Purva Phalguni</option>
+<option>Uttara Phalguni</option>
+<option>Hasta</option>
+<option>Chitra</option>
+<option>Swati</option>
+<option>Vishakha</option>
+<option>Anuradha</option>
+<option>Jyeshtha</option>
+<option>Mula</option>
+<option>Purva Ashadha</option>
+<option>Uttara Ashadha</option>
+<option>Shravana</option>
+<option>Dhanishta</option>
+<option>Shatabhisha</option>
+<option>Purva Bhadrapada</option>
+<option>Uttara Bhadrapada</option>
+<option>Revati</option>
+
+</select>
 
 </div>
 
 <div>
 
-<h3>Groom Details</h3>
+<h3>Groom Nakshatra</h3>
 
-<input type="text" placeholder="Groom Name">
-<input type="date">
-<input type="time">
-<input type="text" placeholder="Birth Place">
+<select id="groomNakshatra">
+
+<option value="">Select Nakshatra</option>
+
+<option>Ashwini</option>
+<option>Bharani</option>
+<option>Krittika</option>
+<option>Rohini</option>
+<option>Mrigashira</option>
+<option>Ardra</option>
+<option>Punarvasu</option>
+<option>Pushya</option>
+<option>Ashlesha</option>
+<option>Magha</option>
+<option>Purva Phalguni</option>
+<option>Uttara Phalguni</option>
+<option>Hasta</option>
+<option>Chitra</option>
+<option>Swati</option>
+<option>Vishakha</option>
+<option>Anuradha</option>
+<option>Jyeshtha</option>
+<option>Mula</option>
+<option>Purva Ashadha</option>
+<option>Uttara Ashadha</option>
+<option>Shravana</option>
+<option>Dhanishta</option>
+<option>Shatabhisha</option>
+<option>Purva Bhadrapada</option>
+<option>Uttara Bhadrapada</option>
+<option>Revati</option>
+
+</select>
 
 </div>
 
 </div>
 
 <button id="generateBtn">
-Generate Compatibility Report
+Calculate Gun Milan
 </button>
 
 </div>
 
 </section>
 
+
 <section id="result" class="result">
 
 <div class="container">
 
-<h2>Match Report</h2>
+<h2>Compatibility Report</h2>
 
 <div class="score-card">
 
-<div class="score">
-29 / 36
+<div id="score" class="score">
+--
 </div>
 
-<div class="status">
-Excellent Compatibility
-</div>
-
+<div id="status" class="status">
+Waiting For Calculation
 </div>
 
 </div>
+
+<div id="report"></div>
+
+</div>
+
+
 
 </section>
 
