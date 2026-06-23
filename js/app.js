@@ -95,3 +95,27 @@ Generated using professional-grade astrology engine:
 document.getElementById("result")
 .scrollIntoView({behavior:"smooth"});
 });
+function shareResult(){
+
+let score = document.getElementById("score").innerText;
+let status = document.getElementById("status").innerText;
+
+let text = `My Kundli Match Result:
+Score: ${score}
+Status: ${status}
+
+Try it free here:
+https://beginner2022.github.io/kundlimatch/`;
+
+let url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+
+window.open(url, "_blank");
+}
+
+
+
+
+
+
+
+
