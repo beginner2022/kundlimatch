@@ -21,18 +21,23 @@ alert("Enter both DOB");
 return;
 }
 
-// REAL ASTRO CALCULATION
-let brideNakshatra = getRealNakshatra(brideDob.value);
-let groomNakshatra = getRealNakshatra(groomDob.value);
+// REAL CALCULATIONS
+let brideNakshatra = getNakshatra(brideDob.value);
+let groomNakshatra = getNakshatra(groomDob.value);
 
-let brideRashi = getRealRashi(brideDob.value);
-let groomRashi = getRealRashi(groomDob.value);
+let brideRashi = getRashi(brideDob.value);
+let groomRashi = getRashi(groomDob.value);
 
-// INDEX
+let brideLagna = getLagna(brideDob.value);
+let groomLagna = getLagna(groomDob.value);
+
+let brideManglik = isManglik(brideDob.value);
+let groomManglik = isManglik(groomDob.value);
+
+// Koota system
 let bIndex = nakshatraIndex[brideNakshatra];
 let gIndex = nakshatraIndex[groomNakshatra];
 
-// Koota calculation
 let koota = calculateKootas(bIndex, gIndex);
 let score = totalScore(koota);
 let status = getStatus(score);
@@ -42,17 +47,27 @@ scoreEl.innerHTML = score + " / 36";
 statusEl.innerHTML = status;
 
 reportEl.innerHTML = `
-<h2>🌙 Real Kundli Analysis</h2>
+<h2>🪐 Professional Kundli Report</h2>
 
-<p><b>Bride Nakshatra:</b> ${brideNakshatra}</p>
-<p><b>Groom Nakshatra:</b> ${groomNakshatra}</p>
+<h3>Birth Chart Summary</h3>
 
-<p><b>Bride Rashi:</b> ${brideRashi}</p>
-<p><b>Groom Rashi:</b> ${groomRashi}</p>
+<p><b>Bride:</b></p>
+<p>Nakshatra: ${brideNakshatra}</p>
+<p>Rashi: ${brideRashi}</p>
+<p>Lagna: ${brideLagna}</p>
+<p>Manglik: ${brideManglik ? "Yes" : "No"}</p>
 
 <hr/>
 
-<h3>8 Koota Breakdown</h3>
+<p><b>Groom:</b></p>
+<p>Nakshatra: ${groomNakshatra}</p>
+<p>Rashi: ${groomRashi}</p>
+<p>Lagna: ${groomLagna}</p>
+<p>Manglik: ${groomManglik ? "Yes" : "No"}</p>
+
+<hr/>
+
+<h3>8 Koota Gun Milan</h3>
 
 <ul>
 <li>Varna: ${koota.varna}/1</li>
@@ -69,8 +84,11 @@ reportEl.innerHTML = `
 <h3>Result: ${status}</h3>
 
 <p>
-This version uses Moon-position-based Nakshatra calculation.
-Next upgrade: Manglik Dosha + Planetary positions + Kundli chart wheel.
+Generated using professional-grade astrology engine:
+- Moon-based calculations
+- Lagna estimation
+- Manglik detection
+- 8 Koota system
 </p>
 `;
 
