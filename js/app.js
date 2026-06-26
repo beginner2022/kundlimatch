@@ -106,7 +106,7 @@ function shareResult(){
 
   let text = `🪐 My Kundli Match Result:\n\nScore: ${score}\nStatus: ${status}\n\nCheck yours free:\nhttps://kundlicheck.in`;
 
-  let url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  let url = "https://wa.me/?text=" + encodeURIComponent(text);
 
-  window.open(url, "_blank");
+  window.location.href = url;
 }
