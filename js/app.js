@@ -6,116 +6,107 @@ const statusEl = document.getElementById("status");
 const reportEl = document.getElementById("report");
 
 function getStatus(score){
-if(score >= 30) return "Excellent Match";
-if(score >= 26) return "Very Good Match";
-if(score >= 22) return "Good Match";
-if(score >= 18) return "Average Match";
-return "Not Recommended";
+  if(score >= 30) return "Excellent Match";
+  if(score >= 26) return "Very Good Match";
+  if(score >= 22) return "Good Match";
+  if(score >= 18) return "Average Match";
+  return "Not Recommended";
 }
 
-document.getElementById("generateBtn")
-.addEventListener("click", function(){
+document.getElementById("generateBtn").addEventListener("click", function(){
 
-if(!brideDob.value || !groomDob.value){
-alert("Enter both DOB");
-return;
-}
+  if(!brideDob.value || !groomDob.value){
+    alert("Please enter both Bride and Groom details");
+    return;
+  }
 
-// REAL CALCULATIONS
-let brideNakshatra = getNakshatra(brideDob.value);
-let groomNakshatra = getNakshatra(groomDob.value);
+  // Calculations (your existing engine)
+  let brideNakshatra = getNakshatra(brideDob.value);
+  let groomNakshatra = getNakshatra(groomDob.value);
 
-let brideRashi = getRashi(brideDob.value);
-let groomRashi = getRashi(groomDob.value);
+  let brideRashi = getRashi(brideDob.value);
+  let groomRashi = getRashi(groomDob.value);
 
-let brideLagna = getLagna(brideDob.value);
-let groomLagna = getLagna(groomDob.value);
+  let brideLagna = getLagna(brideDob.value);
+  let groomLagna = getLagna(groomDob.value);
 
-let brideManglik = isManglik(brideDob.value);
-let groomManglik = isManglik(groomDob.value);
+  let brideManglik = isManglik(brideDob.value);
+  let groomManglik = isManglik(groomDob.value);
 
-// Koota system
-let bIndex = nakshatraIndex[brideNakshatra];
-let gIndex = nakshatraIndex[groomNakshatra];
+  let bIndex = nakshatraIndex[brideNakshatra];
+  let gIndex = nakshatraIndex[groomNakshatra];
 
-let koota = calculateKootas(bIndex, gIndex);
-let score = totalScore(koota);
-let status = getStatus(score);
+  let koota = calculateKootas(bIndex, gIndex);
+  let score = totalScore(koota);
+  let status = getStatus(score);
 
-// OUTPUT
-scoreEl.innerHTML = score + " / 36";
-statusEl.innerHTML = status;
+  // UI update
+  scoreEl.innerHTML = score + " / 36";
+  statusEl.innerHTML = status;
 
-reportEl.innerHTML = `
-<h2>🪐 Professional Kundli Report</h2>
+  // Better structured report (IMPORTANT FIX)
+  reportEl.innerHTML = `
+    <h2>🪐 Kundli Compatibility Report</h2>
 
-<h3>Birth Chart Summary</h3>
+    <div style="margin-top:20px">
+      <h3>Bride Details</h3>
+      <p><b>Nakshatra:</b> ${brideNakshatra}</p>
+      <p><b>Rashi:</b> ${brideRashi}</p>
+      <p><b>Lagna:</b> ${brideLagna}</p>
+      <p><b>Manglik:</b> ${brideManglik ? "Yes ⚠️" : "No ✅"}</p>
+    </div>
 
-<p><b>Bride:</b></p>
-<p>Nakshatra: ${brideNakshatra}</p>
-<p>Rashi: ${brideRashi}</p>
-<p>Lagna: ${brideLagna}</p>
-<p>Manglik: ${brideManglik ? "Yes" : "No"}</p>
+    <hr/>
 
-<hr/>
+    <div>
+      <h3>Groom Details</h3>
+      <p><b>Nakshatra:</b> ${groomNakshatra}</p>
+      <p><b>Rashi:</b> ${groomRashi}</p>
+      <p><b>Lagna:</b> ${groomLagna}</p>
+      <p><b>Manglik:</b> ${groomManglik ? "Yes ⚠️" : "No ✅"}</p>
+    </div>
 
-<p><b>Groom:</b></p>
-<p>Nakshatra: ${groomNakshatra}</p>
-<p>Rashi: ${groomRashi}</p>
-<p>Lagna: ${groomLagna}</p>
-<p>Manglik: ${groomManglik ? "Yes" : "No"}</p>
+    <hr/>
 
-<hr/>
+    <h3>🔯 8 Koota Analysis</h3>
+    <div>
+      <p>Varna: ${koota.varna}/1</p>
+      <p>Vashya: ${koota.vashya}/2</p>
+      <p>Tara: ${koota.tara}/3</p>
+      <p>Yoni: ${koota.yoni}/4</p>
+      <p>Graha Maitri: ${koota.grahaMaitri}/5</p>
+      <p>Gana: ${koota.gana}/6</p>
+      <p>Bhakoot: ${koota.bhakoot}/7</p>
+      <p>Nadi: ${koota.nadi}/8</p>
+    </div>
 
-<h3>8 Koota Gun Milan</h3>
+    <hr/>
 
-<ul>
-<li>Varna: ${koota.varna}/1</li>
-<li>Vashya: ${koota.vashya}/2</li>
-<li>Tara: ${koota.tara}/3</li>
-<li>Yoni: ${koota.yoni}/4</li>
-<li>Graha Maitri: ${koota.grahaMaitri}/5</li>
-<li>Gana: ${koota.gana}/6</li>
-<li>Bhakoot: ${koota.bhakoot}/7</li>
-<li>Nadi: ${koota.nadi}/8</li>
-</ul>
+    <h2>📊 Final Score: ${score} / 36</h2>
+    <h3>💫 Result: ${status}</h3>
 
-<h3>Total Score: ${score}/36</h3>
-<h3>Result: ${status}</h3>
+    <div style="margin-top:20px;padding:15px;background:#fff7ec;border-radius:12px">
+      <h3>💡 Interpretation</h3>
+      <p>
+        This compatibility score is based on traditional 8 Koota Gun Milan system.
+        It evaluates emotional, mental, and marital compatibility.
+      </p>
+    </div>
+  `;
 
-<p>
-Generated using professional-grade astrology engine:
-- Moon-based calculations
-- Lagna estimation
-- Manglik detection
-- 8 Koota system
-</p>
-`;
+  document.getElementById("result")
+  .scrollIntoView({behavior:"smooth"});
 
-document.getElementById("result")
-.scrollIntoView({behavior:"smooth"});
 });
+
 function shareResult(){
 
-let score = document.getElementById("score").innerText;
-let status = document.getElementById("status").innerText;
+  let score = document.getElementById("score").innerText;
+  let status = document.getElementById("status").innerText;
 
-let text = `My Kundli Match Result:
-Score: ${score}
-Status: ${status}
+  let text = `🪐 My Kundli Match Result:\n\nScore: ${score}\nStatus: ${status}\n\nCheck yours free:\nhttps://kundlicheck.in`;
 
-Try it free here:
-https://beginner2022.github.io/kundlimatch/`;
+  let url = `https://wa.me/?text=${encodeURIComponent(text)}`;
 
-let url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-
-window.open(url, "_blank");
+  window.open(url, "_blank");
 }
-
-
-
-
-
-
-
-
